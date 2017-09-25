@@ -51,7 +51,7 @@ fun main(args: Array<String>) {
  * Пользователь задает время в часах, минутах и секундах, например, 8:20:35.
  * Рассчитать время в секундах, прошедшее с начала суток (30035 в данном случае).
  */
-fun seconds(hours: Int, minutes: Int, seconds: Int): Int = hours*3600 + minutes*60 + seconds
+fun seconds(hours: Int, minutes: Int, seconds: Int): Int = hours * 3600 + minutes * 60 + seconds
 
 /**
  * Тривиальная
@@ -60,7 +60,8 @@ fun seconds(hours: Int, minutes: Int, seconds: Int): Int = hours*3600 + minutes*
  * Определить длину того же отрезка в метрах (в данном случае 18.98).
  * 1 сажень = 3 аршина = 48 вершков, 1 вершок = 4.445 см.
  */
-fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double = TODO()
+fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double = (vershoks * 0,00445) + (arshins * 48 * 0,00445) +
+(sagenes * 3 * 48 * 0,00445)
 
 /**
  * Тривиальная
@@ -68,7 +69,7 @@ fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double = TODO()
  * Пользователь задает угол в градусах, минутах и секундах (например, 36 градусов 14 минут 35 секунд).
  * Вывести значение того же угла в радианах (например, 0.63256).
  */
-fun angleInRadian(grad: Int, min: Int, sec: Int): Double = grad + (min + sec/60)/60
+fun angleInRadian(grad: Int, min: Int, sec: Int): Double = ((grad + (min + sec / 60) / 60) * 3.14) / 180
 
 /**
  * Тривиальная
@@ -76,7 +77,11 @@ fun angleInRadian(grad: Int, min: Int, sec: Int): Double = grad + (min + sec/60)
  * Найти длину отрезка, соединяющего точки на плоскости с координатами (x1, y1) и (x2, y2).
  * Например, расстояние между (3, 0) и (0, 4) равно 5
  */
-fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double = TODO()
+fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double {
+    val x = x2 - x1
+    val y = y2 - y1
+    return sqrt(sqr(x)+ sqr(y))
+}
 
 /**
  * Простая
