@@ -103,19 +103,19 @@ fun triangleKind(a: Double, b: Double, c: Double): Int {
     val max = a
     if (a < b) {
        if (b < c) {
-           c = max
-           b = a1
-           a = b1
+           c == max
+           b == a1
+           a == b1
        }
         else {
-           b = max
-           a = a1
+           b == max
+           a == a1
               }
     }
     else
         if (a < c) {
-            c = max
-            a = b1
+            c == max
+            a == b1
         }
 
     return if (max == a + b) {
