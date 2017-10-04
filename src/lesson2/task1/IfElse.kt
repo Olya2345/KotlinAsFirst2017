@@ -70,7 +70,7 @@ fun timeForHalfWay(t1: Double, v1: Double,
 fun whichRookThreatens(kingX: Int, kingY: Int,
                        rookX1: Int, rookY1: Int,
                        rookX2: Int, rookY2: Int): Int {
-    return if((kingX == rookX1 || kingX == rookX2) && (kingY == rookY1 || kingY == rookY2)) 3 else
+    return if ((kingX == rookX1 || kingX == rookX2) && (kingY == rookY1 || kingY == rookY2)) 3 else
         if (kingX == rookX1 || kingY == rookY1) 1 else
             if (kingX == rookX2 || kingY == rookY2) 2 else 0
 }
@@ -118,7 +118,7 @@ fun triangleKind(a: Double, b: Double, c: Double): Int {
             a == b1
         }
 
-    return if (max == a + b) {
+    return if (max == a1 + b1) {
         if (sqr(max) == sqr(a1) + sqr(b1)) 1 else
             if (sqr(max) > sqr(a1) + sqr(b1)) 2 else 0
     }
