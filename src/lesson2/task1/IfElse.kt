@@ -113,7 +113,7 @@ fun triangleKind(a: Double, b: Double, c: Double): Int {
               }
     }
     else
-        if (a < c) {
+        if (a > b && a < c) {
             c == max
             a == b1
         }
