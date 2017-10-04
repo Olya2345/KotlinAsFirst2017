@@ -2,6 +2,7 @@
 package lesson2.task1
 
 import lesson1.task1.discriminant
+import lesson1.task1.sqr
 
 /**
  * Пример
@@ -44,8 +45,19 @@ fun ageDescription(age: Int): String = TODO()
  */
 fun timeForHalfWay(t1: Double, v1: Double,
                    t2: Double, v2: Double,
-                   t3: Double, v3: Double): Double = TODO()
-
+                   t3: Double, v3: Double): Double {
+    val s1 = t1 * v1
+    val s2 = t2 * v2
+    val s3 = t3 * v3
+    val s = (s1 + s2 + s3) / 2.0
+    if (s1 == s) t1 else
+        if (s1 < s) {
+            if (s1 + s2 == s) t1 + t2 else
+                if (s1+ s2 > s) (((s2 - ((s1 + s2) - s)) / v2) + t1) else
+                    (((s - (s1 + s2)) / v3) + t1 + t2)
+        }
+        else (s1 - (s1 - s)) / v1
+}
 /**
  * Простая
  *
