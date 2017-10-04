@@ -93,8 +93,33 @@ fun rookOrBishopThreatens(kingX: Int, kingY: Int,
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
  */
-fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
+fun triangleKind(a: Double, b: Double, c: Double): Int {
+    val a1 = b
+    val b1 = c
+    val max = a
+    if (a < b) {
+       if (b < c) {
+           c = max
+           b = a1
+           a = b1
+       }
+        else {
+           b = max
+           a = a1
+              }
+    }
+    else
+        if (a < c) {
+            c = max
+            a = b1
+        }
 
+    return if (max == a + b) {
+        if (sqr(max) == sqr(a1) + sqr(b1)) 1 else
+            if (sqr(max) > sqr(a1) + sqr(b1)) 2 else 0
+    }
+    else -1
+}
 /**
  * Средняя
  *
