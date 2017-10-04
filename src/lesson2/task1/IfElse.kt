@@ -118,7 +118,7 @@ fun triangleKind(a: Double, b: Double, c: Double): Int {
             a == b1
         }
 
-    return if (max == a1 + b1) {
+    return if (max < a1 + b1) {
         if (sqr(max) == sqr(a1) + sqr(b1)) 1 else
             if (sqr(max) > sqr(a1) + sqr(b1)) 2 else 0
     }
