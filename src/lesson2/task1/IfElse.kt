@@ -115,12 +115,14 @@ fun triangleKind(a: Double, b: Double, c: Double): Int {
         else {
            b == max
            a == a1
+           c == b1
               }
     }
     else
         if (a > b && a < c) {
             c == max
             a == b1
+            b == a1
         }
 
     return if (max < a1 + b1) {
