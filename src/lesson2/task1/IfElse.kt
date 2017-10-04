@@ -3,6 +3,7 @@ package lesson2.task1
 
 import lesson1.task1.discriminant
 import lesson1.task1.sqr
+import java.lang.Math.abs
 
 /**
  * Пример
@@ -87,7 +88,11 @@ fun whichRookThreatens(kingX: Int, kingY: Int,
  */
 fun rookOrBishopThreatens(kingX: Int, kingY: Int,
                           rookX: Int, rookY: Int,
-                          bishopX: Int, bishopY: Int): Int = TODO()
+                          bishopX: Int, bishopY: Int): Int {
+    return if ((kingX == rookX || abs(kingX - bishopX)) && (kingY == rookY || abs(kingY - bishopY))) 3 else
+        if (kingX == rookX || kingY == rookY) 1 else
+            if (abs(kingX - bishopX) || abs(kingY - bishopY)) 2 else 0
+}
 
 /**
  * Простая
