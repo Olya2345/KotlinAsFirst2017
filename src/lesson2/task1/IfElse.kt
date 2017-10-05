@@ -123,7 +123,6 @@ fun rookOrBishopThreatens(kingX: Int, kingY: Int,
             if (sqr(c1) > sqr(a1) + sqr(b1)) 2 else 0
     }
     else -1
-
 }
 /**
  * Средняя
