@@ -101,35 +101,29 @@ fun rookOrBishopThreatens(kingX: Int, kingY: Int,
  * Проверить, является ли данный треугольник остроугольным (вернуть 0),
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
- */
-fun triangleKind(a: Double, b: Double, c: Double): Int {
-    val a1 = b
-    val b1 = c
-    val max = a
-    if (a < b) {
-       if (b < c) {
-           c == max
-           b == a1
-           a == b1
-       }
-        else {
-           b == max
-           a == a1
-           c == b1
-              }
-    }
-    else
-        if (a > b && a < c) {
-            c == max
-            a == b1
-            b == a1
-        }
+        */
+        fun triangleKind(a: Double, b: Double, c: Double): Int {
+            var a1 = a
+            var b1 = b
+            var c1 = c
+            var tmp: Double
+            if (a1 > b1) {
+                tmp = a1
+                a1 = b1
+                b1 = tmp
+            }
+            if (b1 > c1) {
+                tmp = b1
+                b1 = c1
+                c1 = tmp
+            }
 
-    return if (max < a1 + b1) {
-        if (sqr(max) == sqr(a1) + sqr(b1)) 1 else
-            if (sqr(max) > sqr(a1) + sqr(b1)) 2 else 0
+    return if (c1 < a1 + b1) {
+        if (sqr(c1) == sqr(a1) + sqr(b1)) 1 else
+            if (sqr(c1) > sqr(a1) + sqr(b1)) 2 else 0
     }
     else -1
+
 }
 /**
  * Средняя
