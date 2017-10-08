@@ -54,8 +54,8 @@ fun timeForHalfWay(t1: Double, v1: Double,
 
     return when {
         s1 == s -> t1
-        (s1 + s2 == s) -> t1 + t2
-        (s1 + s2 > s) -> ((s2 - ((s1 + s2) - s)) / v2) + t1
+        (s1 < s) && (s1 + s2 == s) -> t1 + t2
+        (s1 < s) && (s1 + s2 > s) -> ((s2 - ((s1 + s2) - s)) / v2) + t1
         (s1 < s) && (s1 + s2 < s) -> ((s - (s1 + s2)) / v3) + t1 + t2
         else -> (s1 - (s1 - s)) / v1
     }
