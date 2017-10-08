@@ -54,19 +54,12 @@ fun timeForHalfWay(t1: Double, v1: Double,
 
     return when {
         s1 == s -> t1
-        (s1 < s) && (s1 + s2 == s) -> t1 + t2
-        (s1 < s) && (s1 + s2 > s) -> ((s2 - ((s1 + s2) - s)) / v2) + t1
+        (s1 + s2 == s) -> t1 + t2
+        (s1 + s2 > s) -> ((s2 - ((s1 + s2) - s)) / v2) + t1
         (s1 < s) && (s1 + s2 < s) -> ((s - (s1 + s2)) / v3) + t1 + t2
         else -> (s1 - (s1 - s)) / v1
     }
 }
-    /*return if (s1 == s) t1 else
-        if (s1 < s) {
-            if (s1 + s2 == s) t1 + t2 else
-                if (s1+ s2 > s) (((s2 - ((s1 + s2) - s)) / v2) + t1) else
-                    (((s - (s1 + s2)) / v3) + t1 + t2)
-        }
-        else (s1 - (s1 - s)) / v1 */
 
 /**
  * Простая
@@ -126,12 +119,12 @@ fun triangleKind(a: Double, b: Double, c: Double): Int {
         b1 = c1
         c1 = tmp
     }
-
-    return if (c1 < a1 + b1) {
-        if (sqr(c1) == sqr(a1) + sqr(b1)) 1 else
-            if (sqr(c1) > sqr(a1) + sqr(b1)) 2 else 0
+    return when {
+        (c1 < a1 + b1) && (sqr(c1) == sqr(a1) + sqr(b1)) -> 1
+        (c1 < a1 + b1) && (sqr(c1) > sqr(a1) + sqr(b1)) -> 2
+        (c1 < a1 + b1) && (sqr(c1) < sqr(a1) + sqr(b1)) -> 0
+        else -> -1
     }
-    else -1
 }
 /**
  * Средняя
@@ -142,8 +135,11 @@ fun triangleKind(a: Double, b: Double, c: Double): Int {
  * Если пересечения нет, вернуть -1.
  */
 fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int {
-    return if (d < a || b < c) -1 else
-        if (a <= c && b <= d) (b - c) else
-            if (a <= c && b >= d) (d - c) else
-                if (a >= c && b <= d) (b - a) else (d - a)
+    return when {
+        (d < a || b < c) -> -1
+        (a <= c && b <= d) -> (b -c)
+        (a <= c && b >= d) -> (d - c)
+        (a >= c && b <= d) -> (b - a)
+        else -> (d - a)
+    }
 }
