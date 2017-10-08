@@ -54,7 +54,7 @@ fun circleInside(x1: Double, y1: Double, r1: Double,
 fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean {
     var x = a
     var y = b
-    if ((x < y) && (c < y)) y = c
+    if ((x <= y) && (c < y)) y = c
     if ((y < x) && (c < x)) x = c
 
     return if (((r < x) || (s < y)) || ((r < y) || (s < x))) false
