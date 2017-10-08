@@ -111,21 +111,21 @@ fun rookOrBishopThreatens(kingX: Int, kingY: Int,
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
         */
-        fun triangleKind(a: Double, b: Double, c: Double): Int {
-            var a1 = a
-            var b1 = b
-            var c1 = c
-            var tmp: Double
-            if (a1 > b1) {
-                tmp = a1
-                a1 = b1
-                b1 = tmp
-            }
-            if (b1 > c1) {
-                tmp = b1
-                b1 = c1
-                c1 = tmp
-            }
+fun triangleKind(a: Double, b: Double, c: Double): Int {
+    var a1 = a
+    var b1 = b
+    var c1 = c
+    var tmp: Double
+    if (a1 > b1) {
+        tmp = a1
+        a1 = b1
+        b1 = tmp
+    }
+    if (b1 > c1) {
+        tmp = b1
+        b1 = c1
+        c1 = tmp
+    }
 
     return if (c1 < a1 + b1) {
         if (sqr(c1) == sqr(a1) + sqr(b1)) 1 else
