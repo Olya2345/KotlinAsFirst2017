@@ -106,14 +106,25 @@ fun buildSumExample(list: List<Int>) = list.joinToString(separator = " + ", post
  * по формуле abs = sqrt(a1^2 + a2^2 + ... + aN^2).
  * Модуль пустого вектора считать равным 0.0.
  */
-fun abs(v: List<Double>): Double = TODO()
+fun abs(v: List<Double>): Double {
+    var s = 0.0
+    if (v.isEmpty() == true) return 0.0
+    for (element in v) {
+        s = s + (element * element)
+    }
+    return Math.sqrt(s)
+}
 
 /**
  * Простая
  *
  * Рассчитать среднее арифметическое элементов списка list. Вернуть 0.0, если список пуст
  */
-fun mean(list: List<Double>): Double = TODO()
+fun mean(list: List<Double>): Double {
+    var s = list.sum() / list.size
+    if (list.isEmpty() == true) return 0.0
+    else return s
+}
 
 /**
  * Средняя
@@ -132,7 +143,17 @@ fun center(list: MutableList<Double>): MutableList<Double> = TODO()
  * представленные в виде списков a и b. Скалярное произведение считать по формуле:
  * C = a1b1 + a2b2 + ... + aNbN. Произведение пустых векторов считать равным 0.0.
  */
-fun times(a: List<Double>, b: List<Double>): Double = TODO()
+fun times(a: List<Double>, b: List<Double>): Double {
+    var s = 0.0
+    if (a.isEmpty() == true) return 0.0
+    if (b.isEmpty() == true) return 0.0
+    for (element1 in a) {
+        for (element2 in b) {
+            if (a.indexOf(element1) == b.indexOf(element2)) s = s + element1 * element2
+        }
+    }
+    return s
+}
 
 /**
  * Средняя
