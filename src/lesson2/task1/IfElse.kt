@@ -119,10 +119,10 @@ fun triangleKind(a: Double, b: Double, c: Double): Int {
         b1 = c1
         c1 = tmp
     }
-    return when {
-        (c1 < a1 + b1) && (sqr(c1) == sqr(a1) + sqr(b1)) -> 1
-        (c1 < a1 + b1) && (sqr(c1) > sqr(a1) + sqr(b1)) -> 2
-        (c1 < a1 + b1) && (sqr(c1) < sqr(a1) + sqr(b1)) -> 0
+    return when { (c1 < a1 + b1) &&
+        (sqr(c1) == sqr(a1) + sqr(b1)) -> 1
+        (sqr(c1) > sqr(a1) + sqr(b1)) -> 2
+        (sqr(c1) < sqr(a1) + sqr(b1)) -> 0
         else -> -1
     }
 }
