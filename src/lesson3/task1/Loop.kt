@@ -101,7 +101,7 @@ fun fib(n: Int): Int {
 fun lcm(m: Int, n: Int): Int {
     var result = m
     if (n > m) result = n
-    while (((result % n) == 0) && ((result % m) == 0) || (result <= n * m)) result++
+    while (((result % n) == 0) && ((result % m) == 0) || (result < n * m)) result++
     return result
 }
 
@@ -152,10 +152,12 @@ fun isCoPrime(m: Int, n: Int): Boolean {
 fun squareBetweenExists(m: Int, n: Int): Boolean {
     var x = Math.sqrt(m.toDouble()).toInt()
     var y = Math.sqrt(n.toDouble()).toInt()
-    do {
-        if ((m <= x * x) && (x * x <= n)) return true
-        x++
-    } while (x  < y)
+    if ((Math.sqrt(m.toDouble()) % 10.0) != 0.0) x = x + 1
+        do {
+            if ((m <= x * x) && (x * x <= n)) return true
+            x++
+        } while (x <= y)
+
     return false
 }
 
