@@ -64,7 +64,7 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  */
 fun digitNumber(n: Int): Int {
     var num = n
-    var result = 0
+    var result = 1
     do {
         num = num / 10
         result += result
@@ -125,7 +125,7 @@ fun minDivisor(n: Int): Int {
  * Для заданного числа n > 1 найти максимальный делитель, меньший n
  */
 fun maxDivisor(n: Int): Int {
-    var a = n - 1
+    var a = n
     for (i in (n - 1) downTo 1) {
         a -= 1
         if (n % i == 0) break
