@@ -250,10 +250,10 @@ fun hasDifferentDigits(n: Int): Boolean {
     var num = n
     var m = n % 10
     do {
-        if ((num % 10) != m) return false
+        if ((num % 10) != m) return true
         num = num / 10
     } while (num > 0)
-    return true
+    return false
 }
 
 /**
@@ -271,7 +271,7 @@ fun squareSequenceDigit(n: Int): Int {
         q = i * i
         qm = qm + q.toString()
         i++
-    } while (qm.length < n)
+    } while (qm.length <= n)
     return qm[n - 1].toInt()
 }
 
