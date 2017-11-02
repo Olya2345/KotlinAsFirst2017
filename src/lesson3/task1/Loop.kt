@@ -64,7 +64,7 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  */
 fun digitNumber(n: Int): Int {
     var num = n
-    var result = 1
+    var result = 0
     do {
         num = num / 10
         result += result
@@ -111,7 +111,7 @@ fun lcm(m: Int, n: Int): Int {
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
 fun minDivisor(n: Int): Int {
-    var a = 2
+    var a = 1
     for (i in 2..n) {
         a += 1
         if (n % i == 0) break
@@ -156,7 +156,7 @@ fun isCoPrime(m: Int, n: Int): Boolean {
  * Например, для интервала 21..28 21 <= 5*5 <= 28, а для интервала 51..61 квадрата не существует.
  */
 fun squareBetweenExists(m: Int, n: Int): Boolean {
-    var x = 1
+    var x = 0
     do {
         if ((m <= x * x) && (x * x <= n)) return true
         x++
