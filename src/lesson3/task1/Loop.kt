@@ -63,7 +63,7 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  * Например, число 1 содержит 1 цифру, 456 -- 3 цифры, 65536 -- 5 цифр.
  */
 fun digitNumber(n: Int): Int {
-    var num = n
+    var num = Math.abs(n)
     var result = 0
     do {
         num = num / 10
@@ -99,13 +99,10 @@ fun fib(n: Int): Int {
  * минимальное число k, которое делится и на m и на n без остатка
  */
 fun lcm(m: Int, n: Int): Int {
-    var m1 = m
-    var n1 = n
-    while (m != n) {
-        if (m > n) m - n
-        else n - m
-    }
-    return m1 * (n1 / m)
+    var result = m
+    if (n > m) result = n
+    while (((result % n) == 0) && ((result % m) == 0) || (result < n * m)) result++
+    return result
 }
 
 /**
@@ -114,12 +111,9 @@ fun lcm(m: Int, n: Int): Int {
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
 fun minDivisor(n: Int): Int {
-    var a = 1
-    for (i in 2..n) {
-        a += 1
-        if (n % i == 0) break
-    }
-    return a
+    var i = 2
+    while ((n % i) != 0) i++
+    return i
 }
 
 /**
@@ -128,12 +122,9 @@ fun minDivisor(n: Int): Int {
  * Для заданного числа n > 1 найти максимальный делитель, меньший n
  */
 fun maxDivisor(n: Int): Int {
-    var a = n
-    for (i in (n - 1) downTo 1) {
-        a -= 1
-        if (n % i == 0) break
-    }
-    return a
+    var i = n
+    do i-- while ((n % i) != 0)
+    return i
 }
 
 /**
@@ -144,7 +135,7 @@ fun maxDivisor(n: Int): Int {
  * Например, 25 и 49 взаимно простые, а 6 и 8 -- нет.
  */
 fun isCoPrime(m: Int, n: Int): Boolean {
-    var s = minOf(n, m)
+    val s = minOf(n, m)
     for (i in 2..s) {
         if ((n % i == 0) and (m % i == 0)) return false
     }
@@ -159,7 +150,7 @@ fun isCoPrime(m: Int, n: Int): Boolean {
  * Например, для интервала 21..28 21 <= 5*5 <= 28, а для интервала 51..61 квадрата не существует.
  */
 fun squareBetweenExists(m: Int, n: Int): Boolean {
-    var x = 0
+    var x = Math.sqrt(m.toDouble()).toInt()
     do {
         if ((m <= x * x) && (x * x <= n)) return true
         x++
@@ -175,13 +166,13 @@ fun squareBetweenExists(m: Int, n: Int): Boolean {
  * Нужную точность считать достигнутой, если очередной член ряда меньше eps по модулю
  */
 fun sin(x: Double, eps: Double): Double {
-    var qn = 1
-    var pw: Int
-    var sx = x
-    var sn: Double
+    var qn = 1      // степень для x
+    var pw: Int     // степень для -1
+    var sx = x      // результат
+    var sn: Double  // новый член
     do {
         qn = qn + 2
-        pw = qn / 2
+        pw = (qn - 1) / 2
         sn = Math.pow(-1.0, pw.toDouble()) * Math.pow(x, qn.toDouble()) / factorial(qn)
         sx = sx + sn
     } while (Math.abs(sn) < eps)
@@ -217,10 +208,10 @@ fun cos(x: Double, eps: Double): Double {
  */
 fun revert(n: Int): Int {
     var num = n
-    var x : Int
-    while (num % 10 > 0) {
-        x = num % 10
-        num = (num - x) / 10;
+    var x = num % 10
+    while (num / 10 > 0) {
+        num = (num ) / 10
+        x = x * 10 + num % 10
     }
     return num
 }
@@ -274,7 +265,7 @@ fun squareSequenceDigit(n: Int): Int {
         q = i * i
         qm = qm + q.toString()
         i++
-    } while (qm.length <= n)
+    } while (qm.length < n)
     return qm[n - 1].toInt()
 }
 
