@@ -19,8 +19,7 @@ fun pointInsideCircle(x: Double, y: Double, x0: Double, y0: Double, r: Double) =
  * Определить, счастливое ли заданное число, вернуть true, если это так.
  */
 fun isNumberHappy(number: Int): Boolean =
-        number.div(100).div(10) + number.div(100).mod(10) ==
-                number.mod(100).div(10) + number.mod(100).mod(10)
+        number / 10000  + number / 100 % 10 == number % 100 / 10 + number % 1000
 
 /**
  * Простая
