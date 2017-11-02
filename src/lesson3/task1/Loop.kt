@@ -152,7 +152,7 @@ fun isCoPrime(m: Int, n: Int): Boolean {
 fun squareBetweenExists(m: Int, n: Int): Boolean {
     var x = Math.sqrt(m.toDouble()).toInt()
     var y = Math.sqrt(n.toDouble()).toInt()
-    if ((Math.sqrt(m.toDouble()) % 10.0) != 0.0) x = x + 1
+    if ((Math.sqrt(m.toDouble()) % 10) != 0.0) x = x + 1
         do {
             if ((m <= x * x) && (x * x <= n)) return true
             x++
@@ -211,12 +211,12 @@ fun cos(x: Double, eps: Double): Double {
  */
 fun revert(n: Int): Int {
     var num = n
-    var x = num % 10
-    while (num / 10 > 0) {
-        num = (num ) / 10
+    var x = 0
+    while (num > 0) {
         x = x * 10 + num % 10
+        num = n / 10
     }
-    return num
+    return x
 }
 
 /**
