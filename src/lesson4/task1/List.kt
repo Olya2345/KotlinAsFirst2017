@@ -146,11 +146,10 @@ fun center(list: MutableList<Double>): MutableList<Double> = TODO()
 fun times(a: List<Double>, b: List<Double>): Double {
     var s = 0.0
     if (a.isEmpty() == true) return 0.0
-    if (b.isEmpty() == true) return 0.0
-    for (element1 in a) {
-        for (element2 in b) {
-            if (a.indexOf(element1) == b.indexOf(element2)) s = s + element1 * element2
-        }
+    else for (element1 in a) {
+            for (element2 in b) {
+                if (a.indexOf(element1) == b.indexOf(element2)) s = s + element1 * element2
+            }
     }
     return s
 }

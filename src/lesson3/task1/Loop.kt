@@ -67,7 +67,7 @@ fun digitNumber(n: Int): Int {
     var result = 0
     do {
         num = num / 10
-        result += result
+        result += 1
     } while (num > 0)
     return result
 }
@@ -99,10 +99,13 @@ fun fib(n: Int): Int {
  * минимальное число k, которое делится и на m и на n без остатка
  */
 fun lcm(m: Int, n: Int): Int {
-    var result = m
-    if (n > m) result = n
-    while ((result % n) > 0 || (result % m) > 0) {result++}
-    return result
+    var m1 = m
+    var n1 = n
+    while (m != n) {
+        if (m > n) m - n
+        else n - m
+    }
+    return m1 * (n1 / m)
 }
 
 /**
