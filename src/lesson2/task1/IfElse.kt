@@ -73,9 +73,16 @@ fun timeForHalfWay(t1: Double, v1: Double,
 fun whichRookThreatens(kingX: Int, kingY: Int,
                        rookX1: Int, rookY1: Int,
                        rookX2: Int, rookY2: Int): Int {
-    return if ((kingX == rookX1 || kingX == rookX2) && (kingY == rookY1 || kingY == rookY2)) 3 else
-        if (kingX == rookX1 || kingY == rookY1) 1 else
-            if (kingX == rookX2 || kingY == rookY2) 2 else 0
+    var x = kingX == rookX1
+    var y = kingY == rookY1
+    var x1 = kingX == rookX2
+    var y1 = kingY == rookY2
+    return when {
+        (x || x1) && (y || y1) -> 3
+        (x || y) -> 1
+        (x1 || y1) -> 2
+        else -> 0
+    }
 }
 
 /**
@@ -91,9 +98,12 @@ fun whichRookThreatens(kingX: Int, kingY: Int,
 fun rookOrBishopThreatens(kingX: Int, kingY: Int,
                           rookX: Int, rookY: Int,
                           bishopX: Int, bishopY: Int): Int {
-    return if ((abs(kingX - bishopX) == abs(kingY - bishopY)) && (kingY == rookY || kingX == rookX)) 3 else
-        if (kingX == rookX || kingY == rookY) 1 else
-            if (abs(kingX - bishopX) == abs(kingY - bishopY)) 2 else 0
+    return when {
+        (abs(kingX - bishopX) == abs(kingY - bishopY)) && (kingY == rookY || kingX == rookX) -> 3
+        (kingX == rookX || kingY == rookY) -> 1
+        (abs(kingX - bishopX) == abs(kingY - bishopY)) -> 2
+        else -> 0
+    }
 }
 
 /**
