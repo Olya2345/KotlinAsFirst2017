@@ -39,7 +39,7 @@ fun ageDescription(age: Int): String {
     return when {
         ((age % 100) >= 10) and ((age % 100) <= 20) -> age.toString() + " лет"
         (age % 10) == 1 -> age.toString() + " год"
-        (age % 10) == 2 or 3 or 4 -> age.toString() + " года"
+        ((age % 10 == 2) || (age % 10 == 3) || (age % 10 == 4)) -> age.toString() + " года"
         else -> age.toString() + " лет"
     }
 }
