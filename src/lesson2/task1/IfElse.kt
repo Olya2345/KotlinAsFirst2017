@@ -60,7 +60,6 @@ fun timeForHalfWay(t1: Double, v1: Double,
     val s = (s1 + s2 + s3) / 2.0
 
     return when {
-        s1 == s -> t1
         (s1 < s) && (s1 + s2 >= s) -> ((s2 - ((s1 + s2) - s)) / v2) + t1
         (s1 < s) && (s1 + s2 < s) -> ((s - (s1 + s2)) / v3) + t1 + t2
         else -> (s1 - (s1 - s)) / v1
@@ -81,12 +80,10 @@ fun whichRookThreatens(kingX: Int, kingY: Int,
                        rookX2: Int, rookY2: Int): Int {
     var x = kingX == rookX1
     var y = kingY == rookY1
-    var x1 = kingX == rookX2
-    var y1 = kingY == rookY2
     return when {
-        (x || x1) && (y || y1) -> 3
+        (x || kingX == rookX2) && (y || kingY == rookY2) -> 3
         (x || y) -> 1
-        (x1 || y1) -> 2
+        (kingX == rookX2 || kingY == rookY2) -> 2
         else -> 0
     }
 }
