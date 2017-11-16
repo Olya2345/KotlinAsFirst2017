@@ -37,7 +37,7 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
  */
 fun ageDescription(age: Int): String {
     return when {
-        ((age % 100) >= 10) and ((age % 100) <= 20) -> age.toString() + " лет"
+        ((age % 100) >= 10) && ((age % 100) <= 20) -> age.toString() + " лет"
         (age % 10) == 1 -> age.toString() + " год"
         ((age % 10 == 2) || (age % 10 == 3) || (age % 10 == 4)) -> age.toString() + " года"
         else -> age.toString() + " лет"
@@ -132,13 +132,15 @@ fun triangleKind(a: Double, b: Double, c: Double): Int {
         b1 = c1
         c1 = tmp
     }
-    return when { (c1 < a1 + b1) &&
+    return when {
+        (c1 >= a1 + b1)  -> -1
         (sqr(c1) == sqr(a1) + sqr(b1)) -> 1
         (sqr(c1) > sqr(a1) + sqr(b1)) -> 2
         (sqr(c1) < sqr(a1) + sqr(b1)) -> 0
         else -> -1
     }
 }
+
 /**
  * Средняя
  *
