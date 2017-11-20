@@ -37,10 +37,10 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
  */
 fun ageDescription(age: Int): String {
     return when {
-        ((age % 100) >= 10) && ((age % 100) <= 20) -> age.toString() + " лет"
-        (age % 10) == 1 -> age.toString() + " год"
-        ((age % 10 == 2) || (age % 10 == 3) || (age % 10 == 4)) -> age.toString() + " года"
-        else -> age.toString() + " лет"
+        ((age % 100) >= 10) && ((age % 100) <= 20) -> println("$age : лет").toString()
+        (age % 10) == 1 -> println("$age : год").toString()
+        ((age % 10 == 2) || (age % 10 == 3) || (age % 10 == 4)) -> println("$age : года").toString()
+        else -> println("$age : лет").toString()
     }
 }
 
