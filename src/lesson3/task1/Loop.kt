@@ -101,10 +101,9 @@ fun fib(n: Int): Int {
 fun lcm(m: Int, n: Int): Int {
     var result = m
     if (n > m) result = n
-    while (((((result % n) != 0) || ((result % m) != 0))) && (result < n * m)) result++
+    while (((((result % n) != 0) || ((result % m) != 0))) && (result < n * m)) result += 1
     return result
 }
-
 /**
  * Простая
  *
@@ -150,15 +149,15 @@ fun isCoPrime(m: Int, n: Int): Boolean {
  * Например, для интервала 21..28 21 <= 5*5 <= 28, а для интервала 51..61 квадрата не существует.
  */
 fun squareBetweenExists(m: Int, n: Int): Boolean {
-    var x = Math.sqrt(m.toDouble()).toInt()
-    var y = Math.sqrt(n.toDouble()).toInt()
-    if ((Math.sqrt(m.toDouble()) % 10) != 0.0) x = x + 1
-        do {
-            if ((m <= x * x) && (x * x <= n)) return true
-            x++
-        } while (x <= y)
-
+    var x = Math.floor(Math.sqrt(m.toDouble()))
+    var y = Math.floor(Math.sqrt(n.toDouble()))
+    while (x <= y)
+    {
+        if ((m <= x* x) && (x * x <= n)) return true
+        x += 1
+    }
     return false
+
 }
 
 /**
