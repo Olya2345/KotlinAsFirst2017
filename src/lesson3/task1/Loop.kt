@@ -99,15 +99,17 @@ fun fib(n: Int): Int {
  * минимальное число k, которое делится и на m и на n без остатка
  */
 fun lcm(m: Int, n: Int): Int {
-    var result = m
-    if (n > m) result = n
-    while (((((result % n) != 0) || ((result % m) != 0))) && (result < n * m)) result += 1
-    return result
-
-    /*var c = maxOf(m,n)
+    var c = maxOf(m,n)
+    var q : Boolean
+    var a : Boolean
     for (i in c..(m * n)) {
-        if (!(i % m) && !(i % n)) return i
-    }*/
+        if (i % m == 0) q = true
+        else q = false
+        if (i % n == 0) a = true
+        else a = false
+        if (q  && a ) return i
+    }
+    return 0
 }
 /**
  * Простая
