@@ -100,14 +100,8 @@ fun fib(n: Int): Int {
  */
 fun lcm(m: Int, n: Int): Int {
     var c = maxOf(m,n)
-    var q : Boolean
-    var a : Boolean
     for (i in c..(m * n)) {
-        if (i % m == 0) q = true
-        else q = false
-        if (i % n == 0) a = true
-        else a = false
-        if (q  && a ) return i
+        if (!(i%m) && !(i%n) ) return i
     }
     return 0
 }
@@ -217,10 +211,10 @@ fun cos(x: Double, eps: Double): Double {
  */
 fun revert(n: Int): Int {
     var num = n
-    var x = 0
+    var x  = 0
     while (num > 0) {
         x = x * 10 + num % 10
-        num = n / 10
+        num = num / 10
     }
     return x
 }
@@ -233,13 +227,7 @@ fun revert(n: Int): Int {
  * 15751 -- палиндром, 3653 -- нет.
  */
 fun isPalindrome(n: Int): Boolean {
-    var a = n
-    var r = 0
-    while (a > 0) {
-        r = r * 10 + n % 10
-        a = a / 10
-    }
-    if (n == r) return true
+    if (n == revert(n)) return true
     else return false
 }
 
