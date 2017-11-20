@@ -54,7 +54,7 @@ fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean {
     var x = a
     var y = b
     if ((x <= y) && (c < y)) y = c
-    if ((y < x) && (c < x)) x = c
+    else if ((y < x) && (c < x)) x = c
     if (((r < x) || (s < y)) && ((r < y) || (s < x))) return  false
     else return true
 }
