@@ -103,6 +103,11 @@ fun lcm(m: Int, n: Int): Int {
     if (n > m) result = n
     while (((((result % n) != 0) || ((result % m) != 0))) && (result < n * m)) result += 1
     return result
+
+    /*var c = maxOf(m,n)
+    for (i in c..(m * n)) {
+        if (!(i % m) && !(i % n)) return i
+    }*/
 }
 /**
  * Простая
@@ -149,8 +154,8 @@ fun isCoPrime(m: Int, n: Int): Boolean {
  * Например, для интервала 21..28 21 <= 5*5 <= 28, а для интервала 51..61 квадрата не существует.
  */
 fun squareBetweenExists(m: Int, n: Int): Boolean {
-    var x = Math.floor(Math.sqrt(m.toDouble()))
-    var y = Math.floor(Math.sqrt(n.toDouble()))
+    var x = Math.ceil(Math.sqrt(m.toDouble()))
+    var y = Math.ceil(Math.sqrt(n.toDouble()))
     while (x <= y)
     {
         if ((m <= x* x) && (x * x <= n)) return true
