@@ -257,13 +257,14 @@ fun hasDifferentDigits(n: Int): Boolean {
 fun squareSequenceDigit(n: Int): Int {
     var qm = ""
     var i = 1
-    var q: Int
+    var ql = 0
     do {
-        q = i * i
-        qm = qm + q.toString()
-        i++
-    } while (qm.length < n)
-    return qm[n - 1].toInt()
+        qm= (i * i).toString()
+        ql = ql+qm.length
+        i += 1
+    } while (ql < n)
+    ql=ql - qm.length
+    return qm[n - ql -1].toInt()
 }
 
 /**
