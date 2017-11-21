@@ -108,7 +108,7 @@ fun lcm(m: Int, n: Int): Int {
             m1 = n
             n1 = c
         }
-    n1 -= m1
+        n1 -= m1
     }
     return (m * n) / m1
 }
@@ -158,7 +158,7 @@ fun isCoPrime(m: Int, n: Int): Boolean {
  * Например, для интервала 21..28 21 <= 5*5 <= 28, а для интервала 51..61 квадрата не существует.
  */
 fun squareBetweenExists(m: Int, n: Int): Boolean {
-    var x = Math.ceil(Math.sqrt(m.toDouble()))
+    var x = Math.floor(Math.sqrt(m.toDouble()))
     var y = Math.ceil(Math.sqrt(n.toDouble()))
     while (x <= y)
     {
@@ -186,7 +186,7 @@ fun sin(x: Double, eps: Double): Double {
         pw = (qn - 1) / 2
         sn = Math.pow(-1.0, pw.toDouble()) * Math.pow(x, qn.toDouble()) / factorial(qn)
         sx = sx + sn
-    } while (Math.abs(sn) < eps)
+    } while (Math.abs(sn) > eps)
     return sx
 }
 
@@ -207,7 +207,7 @@ fun cos(x: Double, eps: Double): Double {
         pw = qn / 2
         cn = Math.pow(-1.0, pw.toDouble()) * Math.pow(x, qn.toDouble()) / factorial(qn)
         cx = cx + cn
-    } while (Math.abs(cn) < eps)
+    } while (Math.abs(cn) > eps)
     return cx
 }
 
@@ -234,10 +234,7 @@ fun revert(n: Int): Int {
  * первая цифра равна последней, вторая -- предпоследней и так далее.
  * 15751 -- палиндром, 3653 -- нет.
  */
-fun isPalindrome(n: Int): Boolean {
-    if (n == revert(n)) return true
-    else return false
-}
+fun isPalindrome(n: Int): Boolean = n == revert(n)
 
 /**
  * Средняя
