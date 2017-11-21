@@ -108,9 +108,8 @@ fun buildSumExample(list: List<Int>) = list.joinToString(separator = " + ", post
  */
 fun abs(v: List<Double>): Double {
     var s = 0.0
-    if (v.isEmpty() == true) return 0.0
     for (element in v) {
-        s = s + (element * element)
+        s += (element * element)
     }
     return Math.sqrt(s)
 }
@@ -121,9 +120,8 @@ fun abs(v: List<Double>): Double {
  * Рассчитать среднее арифметическое элементов списка list. Вернуть 0.0, если список пуст
  */
 fun mean(list: List<Double>): Double {
-    var s = list.sum() / list.size
-    if (list.isEmpty() == true) return 0.0
-    else return s
+    if (list.isEmpty()) return 0.0
+    return  list.sum() / list.size
 }
 
 /**
@@ -145,11 +143,8 @@ fun center(list: MutableList<Double>): MutableList<Double> = TODO()
  */
 fun times(a: List<Double>, b: List<Double>): Double {
     var s = 0.0
-    if (a.isEmpty() == true) return 0.0
-    else for (element1 in a) {
-            for (element2 in b) {
-                if (a.indexOf(element1) == b.indexOf(element2)) s = s + element1 * element2
-            }
+    for (i in 1..a.size) {
+        s += a[i] * b[i]
     }
     return s
 }
@@ -163,10 +158,13 @@ fun times(a: List<Double>, b: List<Double>): Double {
  * Значение пустого многочлена равно 0.0 при любом x.
  */
 fun polynom(p: List<Double>, x: Double): Double {
-    var px = 0.0
-    if (p.isEmpty() == true) return 0.0
-    else for (element in p) {
-        px = px + element * Math.pow(x, element)
+    var px = p.first()
+    var i = 0.0
+    var p1 = p - p.first()
+    if (p.isEmpty()) return 0.0
+    else for (element in p1) {
+        p1 += element * Math.pow(x, i)
+        i += 1
     }
     return px
 }
@@ -190,7 +188,19 @@ fun accumulate(list: MutableList<Double>): MutableList<Double> = TODO()
  * Результат разложения вернуть в виде списка множителей, например 75 -> (3, 5, 5).
  * Множители в списке должны располагаться по возрастанию.
  */
-fun factorize(n: Int): List<Int> = TODO()
+fun factorize(n: Int): List<Int> {
+    var m = listOf<Int>()
+    var a = 2
+    var c = n
+    for (element in 1..c) {
+        if (c % a != 0) a +=1
+        else {
+            m += a
+            c /= a
+        }
+    }
+    return m
+}
 
 /**
  * Сложная
@@ -198,7 +208,19 @@ fun factorize(n: Int): List<Int> = TODO()
  * Разложить заданное натуральное число n > 1 на простые множители.
  * Результат разложения вернуть в виде строки, например 75 -> 3*5*5
  */
-fun factorizeToString(n: Int): String = TODO()
+fun factorizeToString(n: Int): String {
+    var m : String = ""
+    var a = 2
+    var c = n
+    for (i in 1..c) {
+        if (c % a != 0) a +=1
+        else {
+            m += "$a * "
+            c /= a
+        }
+    }
+    return m
+}
 
 /**
  * Средняя
