@@ -186,7 +186,7 @@ fun sin(x: Double, eps: Double): Double {
         pw = (qn - 1) / 2
         sn = Math.pow(-1.0, pw.toDouble()) * Math.pow(x, qn.toDouble()) / factorial(qn)
         sx = sx + sn
-    } while (Math.abs(sn) > eps)
+    } while (Math.abs(sn) >= eps)
     return sx
 }
 
@@ -207,7 +207,7 @@ fun cos(x: Double, eps: Double): Double {
         pw = qn / 2
         cn = Math.pow(-1.0, pw.toDouble()) * Math.pow(x, qn.toDouble()) / factorial(qn)
         cx = cx + cn
-    } while (Math.abs(cn) > eps)
+    } while (Math.abs(cn) >= eps)
     return cx
 }
 
