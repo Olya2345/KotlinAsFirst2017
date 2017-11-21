@@ -143,7 +143,7 @@ fun center(list: MutableList<Double>): MutableList<Double> = TODO()
  */
 fun times(a: List<Double>, b: List<Double>): Double {
     var s = 0.0
-    for (i in 1..a.size) {
+    for (i in 0..a.size - 1) {
         s += a[i] * b[i]
     }
     return s
@@ -215,7 +215,8 @@ fun factorizeToString(n: Int): String {
     for (i in 1..c) {
         if (c % a != 0) a +=1
         else {
-            m += "$a * "
+            if (m!="") m += "*"
+                m += "$a"
             c /= a
         }
     }
