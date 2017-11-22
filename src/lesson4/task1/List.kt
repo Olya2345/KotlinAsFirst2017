@@ -235,8 +235,8 @@ fun convert(n: Int, base: Int): List<Int> {
     var m = n
     for (i in 1..m) {
         p += m % base
-        m /= base
         if (m < base) break
+        else m /= base
     }
     return p.reversed()
 }
@@ -251,15 +251,14 @@ fun convert(n: Int, base: Int): List<Int> {
  */
 fun convertToString(n: Int, base: Int): String {
     var m : String = ""
+    var list = listOf<String>("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")
     var c = n
-    while (c >= base) {
-            if (c  % base < 10) m += (c % base).toString()
-            else m += ("a".toInt() -10 + c % base).toString()
-            c /= base
-            }
-    if (c > 9) m += "$c"
-    else m += ("a".toInt() -10 + c).toString()
-
+    for (i in 1..c) {
+        if (c % base > 9) m += list.elementAt(c % base - 1)
+        else m += c % base
+        if (c < base) break
+        else c /= base
+    }
     return m.reversed()
 }
 
