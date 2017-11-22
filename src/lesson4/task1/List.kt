@@ -235,7 +235,10 @@ fun convert(n: Int, base: Int): List<Int> {
     var m = n
     for (i in 1..m) {
         p += m % base
-        if (m < base) break
+        if (m < base) {
+            p += m
+            break
+        }
         else m /= base
     }
     if (n == 0) p.plus(0)
