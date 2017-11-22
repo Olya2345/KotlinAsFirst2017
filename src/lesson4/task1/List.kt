@@ -260,7 +260,10 @@ fun convertToString(n: Int, base: Int): String {
     for (i in 1..c) {
         if (c % base > 9) m += list.elementAt(c % base - 10)
         else m += c % base
-        if (c < base) break
+        if (c < base) {
+            m += c
+            break
+        }
         else c /= base
     }
     return m.reversed()
