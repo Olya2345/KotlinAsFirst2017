@@ -235,7 +235,7 @@ fun convert(n: Int, base: Int): List<Int> {
     var m = n
     for (i in 1..m) {
         p += m % base
-        if (m < base) {
+        if (m <= base) {
             p += m
             break
         }
@@ -260,7 +260,7 @@ fun convertToString(n: Int, base: Int): String {
     for (i in 1..c) {
         if (c % base > 9) m += list.elementAt(c % base - 10)
         else m += c % base
-        if (c < base) {
+        if (c <= base) {
             m += c
             break
         }
