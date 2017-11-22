@@ -233,7 +233,7 @@ fun factorizeToString(n: Int): String {
 fun convert(n: Int, base: Int): List<Int> {
     var p = listOf<Int>()
     var m = n
-    for (i in 1..m) {
+    for (i in 0..m) {
         p += m % base
         m /= base
     }
@@ -248,7 +248,16 @@ fun convert(n: Int, base: Int): List<Int> {
  * строчными буквами: 10 -> a, 11 -> b, 12 -> c и так далее.
  * Например: n = 100, base = 4 -> 1210, n = 250, base = 14 -> 13c
  */
-fun convertToString(n: Int, base: Int): String = TODO()
+fun convertToString(n: Int, base: Int): String {
+    var m : String = ""
+    var c = n
+    for (i in 0..c) {
+        if (c  % base < 10) m += (c % base).toString()
+        else m += (87 + c % base).toString()
+        c /= base
+    }
+    return m.reversed()
+}
 
 /**
  * Средняя
