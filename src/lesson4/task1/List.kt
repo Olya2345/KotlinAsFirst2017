@@ -233,14 +233,11 @@ fun factorizeToString(n: Int): String {
 fun convert(n: Int, base: Int): List<Int> {
     var p = listOf<Int>()
     var m = n
-    if (n != 0) {
-        for (i in 1..m) {
-            p += m % base
-            if (m < base) break
-            else m /= base
-        }
+    for (i in m..0) {
+        p += m % base
+        if (m < base) break
+        else m /= base
     }
-    else p.plus("0")
     return p.reversed()
 }
 
@@ -256,15 +253,12 @@ fun convertToString(n: Int, base: Int): String {
     var m : String = ""
     var list = listOf<String>("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")
     var c = n
-    if (n != 0) {
-        for (i in 1..c) {
-            if (c % base > 9) m += list.elementAt(c % base - 11)
-            else m += c % base
-            if (c < base) break
-            else c /= base
-        }
+    for (i in c..0) {
+        if (c % base > 9) m += list.elementAt(c % base - 11)
+        else m += c % base
+        if (c < base) break
+        else c /= base
     }
-    else m = "0"
     return m.reversed()
 }
 
