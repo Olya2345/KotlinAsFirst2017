@@ -233,7 +233,7 @@ fun factorizeToString(n: Int): String {
 fun convert(n: Int, base: Int): List<Int> {
     var p = listOf<Int>()
     var m = n
-    for (i in 0..m) {
+    for (i in 1..m) {
         p += m % base
         m /= base
     }
@@ -251,7 +251,7 @@ fun convert(n: Int, base: Int): List<Int> {
 fun convertToString(n: Int, base: Int): String {
     var m : String = ""
     var c = n
-    for (i in 0..c) {
+    for (i in 1..c) {
         if (c  % base < 10) m += (c % base).toString()
         else m += (87 + c % base).toString()
         c /= base
@@ -266,7 +266,15 @@ fun convertToString(n: Int, base: Int): String {
  * из системы счисления с основанием base в десятичную.
  * Например: digits = (1, 3, 12), base = 14 -> 250
  */
-fun decimal(digits: List<Int>, base: Int): Int = TODO()
+fun decimal(digits: List<Int>, base: Int): Int {
+    var n = 0
+    var a = 0.0
+    for (i in digits.reversed()) {
+        n +=digits[i] * Math.pow(base.toDouble(), a).toInt()
+        a += 1
+    }
+    return n
+}
 
 /**
  * Сложная
