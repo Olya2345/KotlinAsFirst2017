@@ -236,7 +236,7 @@ fun convert(n: Int, base: Int): List<Int> {
     for (i in 1..m) {
         p += m % base
         m /= base
-        if (n % base < base) break
+        if (m < base) break
     }
     return p.reversed()
 }
