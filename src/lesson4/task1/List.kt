@@ -258,7 +258,7 @@ fun convertToString(n: Int, base: Int): String {
     var list = listOf<String>("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")
     var c = n
     for (i in 1..c) {
-        if (c % base > 9) m += list.elementAt(c % base - 11)
+        if (c % base > 9) m += list.elementAt(c % base - 10)
         else m += c % base
         if (c < base) break
         else c /= base
