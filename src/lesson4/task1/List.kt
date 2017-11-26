@@ -241,7 +241,8 @@ fun convert(n: Int, base: Int): List<Int> {
         else m /= base
     }
     if (n == 0) p = listOf(0)
-    return p.subList(0, p.size - 1).reversed()
+    return if (n != 0 && n > base) (p.subList(0, p.size - 1).reversed())
+    else p
 }
 
 /**
@@ -264,7 +265,7 @@ fun convertToString(n: Int, base: Int): String {
         }
         else c /= base
     }
-    return if (n != 0) (m.substring(0, m.length - 1).reversed())
+    return if (n != 0 && n > base) (m.substring(0, m.length - 1).reversed())
     else m
 }
 
