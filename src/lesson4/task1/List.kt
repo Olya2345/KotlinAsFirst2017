@@ -192,7 +192,7 @@ fun factorize(n: Int): List<Int> {
     var m = listOf<Int>()
     var a = 2
     var c = n
-    for (element in 1..c) {
+    for (i in 1..c) {
         if (c % a != 0) a +=1
         else {
             m += a
@@ -241,7 +241,7 @@ fun convert(n: Int, base: Int): List<Int> {
         }
         else m /= base
     }
-    if (n == 0) p.plus(0)
+    if (n == 0) p = listOf(0)
     return p.reversed()
 }
 
