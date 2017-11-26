@@ -232,8 +232,7 @@ fun convert(n: Int, base: Int): List<Int> {
         }
     }
     if (n == 0) p = listOf(0)
-    return if (n != 0 && n > base) (p.subList(0, p.size - 1).reversed())
-    else p.reversed()
+    return p.reversed()
 }
 
 /**
@@ -258,7 +257,7 @@ fun convertToString(n: Int, base: Int): String {
         else c /= base
     }
     return if (n != 0 && n > base) (m.substring(0, m.length - 1).reversed())
-    else m
+    else m.plus("0")
 }
 
 /**
@@ -272,7 +271,7 @@ fun decimal(digits: List<Int>, base: Int): Int {
     var n = 0
     var a = 0.0
     for (i in digits.reversed()) {
-        n +=digits[i] * Math.pow(base.toDouble(), a).toInt()
+        n += digits[i] * Math.pow(base.toDouble(), a).toInt()
         a += 1.0
     }
     return n
