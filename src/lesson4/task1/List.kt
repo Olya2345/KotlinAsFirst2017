@@ -209,20 +209,7 @@ fun factorize(n: Int): List<Int> {
  * Разложить заданное натуральное число n > 1 на простые множители.
  * Результат разложения вернуть в виде строки, например 75 -> 3*5*5
  */
-fun factorizeToString(n: Int): String {
-    var m : String = ""
-    var a = 2
-    var c = n
-    for (i in 1..c) {
-        if (c % a != 0) a +=1
-        else {
-            if (m!="") m += "*"
-                m += "$a"
-            c /= a
-        }
-    }
-    return m
-}
+fun factorizeToString(n: Int): String = factorize(n).joinToString(separator = "*")
 
 /**
  * Средняя
@@ -245,7 +232,8 @@ fun convert(n: Int, base: Int): List<Int> {
         }
     }
     if (n == 0) p = listOf(0)
-    return p.reversed()
+    return if (n != 0 && n > base) (p.subList(0, p.size - 1).reversed())
+    else p.reversed()
 }
 
 /**
@@ -261,16 +249,16 @@ fun convertToString(n: Int, base: Int): String {
     var list = listOf<String>("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")
     var c = n
     for (i in 1..c) {
+        if (c % base > 9) m += list.elementAt(c % base - 10)
+        else m += c % base
         if (c <= base) {
             m += c
             break
         }
-        else
-            if (c % base > 9) m += list.elementAt(c % base - 10)
-            else m += c % base
-            c /= base
+        else c /= base
     }
-    return m.reversed()
+    return if (n != 0 && n > base) (m.substring(0, m.length - 1).reversed())
+    else m
 }
 
 /**
