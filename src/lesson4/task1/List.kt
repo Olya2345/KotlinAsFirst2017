@@ -236,13 +236,12 @@ fun convert(n: Int, base: Int): List<Int> {
     for (i in 1..m) {
         p += m % base
         if (m <= base) {
-            p += m
             break
         }
         else m /= base
     }
     if (n == 0) p = listOf(0)
-    return p.reversed()
+    return p.subList(0, p.size - 1).reversed()
 }
 
 /**
@@ -261,12 +260,11 @@ fun convertToString(n: Int, base: Int): String {
         if (c % base > 9) m += list.elementAt(c % base - 10)
         else m += c % base
         if (c <= base) {
-            m += c
             break
         }
         else c /= base
     }
-    return if (n != 0) (m.substring(0,m.length - 1).reversed())
+    return if (n != 0) (m.substring(0, m.length - 1).reversed())
     else m
 }
 
