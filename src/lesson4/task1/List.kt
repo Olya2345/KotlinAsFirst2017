@@ -266,7 +266,8 @@ fun convertToString(n: Int, base: Int): String {
         }
         else c /= base
     }
-    return m.substring(0,m.length - 1).reversed()
+    return if (n != 0) (m.substring(0,m.length - 1).reversed())
+    else m
 }
 
 /**
