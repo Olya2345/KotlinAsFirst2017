@@ -179,7 +179,12 @@ fun polynom(p: List<Double>, x: Double): Double {
  *
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
-fun accumulate(list: MutableList<Double>): MutableList<Double> = TODO()
+fun accumulate(list: MutableList<Double>): MutableList<Double> {
+    for (i in 1..list.size) {
+        list[i] += list[i - 1]
+    }
+    return list
+}
 
 /**
  * Средняя
@@ -236,6 +241,7 @@ fun convert(n: Int, base: Int): List<Int> {
     for (i in 1..m) {
         p += m % base
         if (m <= base) {
+            p += m
             break
         }
         else m /= base
@@ -261,6 +267,7 @@ fun convertToString(n: Int, base: Int): String {
         if (c % base > 9) m += list.elementAt(c % base - 10)
         else m += c % base
         if (c <= base) {
+            m += c
             break
         }
         else c /= base
