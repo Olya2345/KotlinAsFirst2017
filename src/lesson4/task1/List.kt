@@ -158,15 +158,11 @@ fun times(a: List<Double>, b: List<Double>): Double {
  * Значение пустого многочлена равно 0.0 при любом x.
  */
 fun polynom(p: List<Double>, x: Double): Double {
-    var px = p.first()
-    var i = 0.0
-    var p1 = p - p.first()
-    if (p.isEmpty()) return 0.0
-    else for (element in p1) {
-        p1 += element * Math.pow(x, i)
-        i += 1
+    var r = 0.0
+    for (i in 0..p.size) {
+        r += p[i] * Math.pow(x, i.toDouble())
     }
-    return px
+    return r
 }
 
 /**
@@ -239,16 +235,18 @@ fun convert(n: Int, base: Int): List<Int> {
     var p = listOf<Int>()
     var m = n
     for (i in 1..m) {
-        p += m % base
         if (m <= base) {
             p += m
             break
         }
-        else m /= base
+        else {
+            p += m % base
+            m /= base
+        }
     }
     if (n == 0) p = listOf(0)
     return if (n != 0 && n > base) (p.subList(0, p.size - 1).reversed())
-    else p
+    else p.reversed()
 }
 
 /**
@@ -288,7 +286,7 @@ fun decimal(digits: List<Int>, base: Int): Int {
     var a = 0.0
     for (i in digits.reversed()) {
         n +=digits[i] * Math.pow(base.toDouble(), a).toInt()
-        a += 1
+        a += 1.0
     }
     return n
 }
