@@ -266,7 +266,7 @@ fun decimal(digits: List<Int>, base: Int): Int {
     var n = 0
     var a = 0.0
     for (i in digits.reversed()) {
-        n += digits[i] * Math.pow(base.toDouble(), a).toInt()
+        n += i * Math.pow(base.toDouble(), a).toInt()
         a += 1.0
     }
     return n
