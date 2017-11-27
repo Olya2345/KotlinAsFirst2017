@@ -159,7 +159,7 @@ fun times(a: List<Double>, b: List<Double>): Double {
  */
 fun polynom(p: List<Double>, x: Double): Double {
     var r = 0.0
-    for (i in 0..p.size) {
+    for (i in 0..p.size - 1) {
         r += p[i] * Math.pow(x, i.toDouble())
     }
     return r
@@ -222,7 +222,7 @@ fun convert(n: Int, base: Int): List<Int> {
     var p = listOf<Int>()
     var m = n
     for (i in 1..m) {
-        if (m <= base) {
+        if (m < base) {
             p += m
             break
         }
@@ -232,8 +232,7 @@ fun convert(n: Int, base: Int): List<Int> {
         }
     }
     if (n == 0) p = listOf(0)
-    return if (n != 0 && n > base) (p.subList(0, p.size - 1).reversed())
-    else p.reversed()
+    return p.reversed()
 }
 
 /**
@@ -251,7 +250,8 @@ fun convertToString(n: Int, base: Int): String {
     for (i in 1..c) {
         if (c % base > 9) m += list.elementAt(c % base - 10)
         else m += c % base
-        if (c <= base) {
+        if (c < base) {
+            m += c
             break
         }
         else c /= base

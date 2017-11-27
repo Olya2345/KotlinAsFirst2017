@@ -81,7 +81,7 @@ fun whichRookThreatens(kingX: Int, kingY: Int,
     var x = kingX == rookX1 || kingY == rookY1
     var y = kingX == rookX2 || kingY == rookY2
     return when {
-        (kingX == rookX1 || kingX == rookX2) && (kingY == rookY1 || kingY == rookY2) -> 3
+        x && y -> 3
         x -> 1
         y -> 2
         else -> 0
