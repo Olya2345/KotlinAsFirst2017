@@ -177,10 +177,10 @@ fun sin(x: Double, eps: Double): Double {
     var sx = x      // результат
     var sn: Double  // новый член
     do {
+        qn = qn + 2
         pw = (qn - 1) / 2
         sn = Math.pow(-1.0, pw.toDouble()) * Math.pow(x, qn.toDouble()) / factorial(qn)
         sx += sn
-        qn = qn + 2
     } while (Math.abs(sn) >= eps)
     return sx
 }
@@ -264,7 +264,7 @@ fun squareSequenceDigit(n: Int): Int {
         i += 1
     } while (ql < n)
     ql = ql - qm.length
-    return qm[n - ql - 1].toInt()
+    return qm[n - ql - 1].toInt() - 48
 }
 
 /**
@@ -285,5 +285,5 @@ fun fibSequenceDigit(n: Int): Int {
         f1 = f2
         f2 = fib
     } while (qf.length < n)
-    return qf[n - 1].toInt()
+    return qf[n - 1].toInt() - 48
 }
