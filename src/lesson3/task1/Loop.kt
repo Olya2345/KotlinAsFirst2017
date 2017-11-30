@@ -99,12 +99,11 @@ fun fib(n: Int): Int {
  * минимальное число k, которое делится и на m и на n без остатка
  */
 fun lcm(m: Int, n: Int): Int {
-    var c: Int
     var n1 = n
     var m1 = m
     while (m1 != n1) {
         if (m1 > n1) {
-            c = m1
+            var c = m1
             m1 = n1
             n1 = c
         }
@@ -160,12 +159,8 @@ fun isCoPrime(m: Int, n: Int): Boolean {
 fun squareBetweenExists(m: Int, n: Int): Boolean {
     var x = Math.ceil(Math.sqrt(m.toDouble()))
     var y = Math.floor(Math.sqrt(n.toDouble()))
-    while (x <= y)
-    {
-        if ((m <= x* x) && (x * x <= n)) return true
-        x += 1
-    }
-    return false
+    if (x <= y) return true
+    else return false
 
 }
 
@@ -182,10 +177,10 @@ fun sin(x: Double, eps: Double): Double {
     var sx = x      // результат
     var sn: Double  // новый член
     do {
-        qn = qn + 2
         pw = (qn - 1) / 2
         sn = Math.pow(-1.0, pw.toDouble()) * Math.pow(x, qn.toDouble()) / factorial(qn)
-        sx = sx + sn
+        sx += sn
+        qn = qn + 2
     } while (Math.abs(sn) >= eps)
     return sx
 }
@@ -264,12 +259,12 @@ fun squareSequenceDigit(n: Int): Int {
     var i = 1
     var ql = 0
     do {
-        qm= (i * i).toString()
-        ql = ql+qm.length
+        qm = (i * i).toString()
+        ql = ql + qm.length
         i += 1
     } while (ql < n)
-    ql=ql - qm.length
-    return qm[n - ql -1].toInt()
+    ql = ql - qm.length
+    return qm[n - ql - 1].toInt()
 }
 
 /**
