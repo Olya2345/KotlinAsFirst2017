@@ -244,9 +244,8 @@ fun convert(n: Int, base: Int): List<Int> {
  * Например: n = 100, base = 4 -> 1210, n = 250, base = 14 -> 13c
  */
 fun convertToString(n: Int, base: Int): String {
-    var m : String = ""
+    var m = ""
     var list = listOf<String>("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")
-    var c = n
     val l = convert(n, base)
     for (element in l) {
         if (element > 9) m += list.elementAt(element % base - 10)
@@ -281,7 +280,14 @@ fun decimal(digits: List<Int>, base: Int): Int {
  * 10 -> a, 11 -> b, 12 -> c и так далее.
  * Например: str = "13c", base = 14 -> 250
  */
-fun decimalFromString(str: String, base: Int): Int  = TODO()
+fun decimalFromString(str: String, base: Int): Int {
+    var r = mutableListOf<Int>()
+    for (element in str) {
+        if (element.toInt() >= 97) r.add(element.toInt() - 87)
+        else r.add(element.toInt() - 48)
+    }
+    return decimal(r, base)
+}
 
 /**
  * Сложная
