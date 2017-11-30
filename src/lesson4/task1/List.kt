@@ -252,10 +252,10 @@ fun convert(n: Int, base: Int): List<Int> {
  */
 fun convertToString(n: Int, base: Int): String {
     var m = ""
-    var list = listOf<String>("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")
+    var str = "abcdefghijklmnopqrstuvwxyz"
     val l = convert(n, base)
     for (element in l) {
-        if (element > 9) m += list.elementAt(element % base - 10)
+        if (element > 9) m += str.elementAt(element % base - 10)
         else m += element
     }
     return m
