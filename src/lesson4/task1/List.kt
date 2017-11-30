@@ -2,6 +2,7 @@
 package lesson4.task1
 
 import lesson1.task1.discriminant
+import lesson1.task1.quadraticRootProduct
 
 /**
  * Пример
@@ -303,7 +304,19 @@ fun decimalFromString(str: String, base: Int): Int {
  * 90 = XC, 100 = C, 400 = CD, 500 = D, 900 = CM, 1000 = M.
  * Например: 23 = XXIII, 44 = XLIV, 100 = C
  */
-fun roman(n: Int): String = TODO()
+fun roman(n: Int): String {
+    val list1 = listOf("M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX","V", "IV", "I")
+    val list2 = listOf(1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
+    var q = ""
+    var m = n
+    for (i in 0..(list2.size - 1)) {
+        while (m >= list2[i]) {
+            q += list1[i]
+            m -= list2[i]
+        }
+    }
+    return q
+}
 
 /**
  * Очень сложная
