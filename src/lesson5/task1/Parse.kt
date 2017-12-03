@@ -68,7 +68,12 @@ fun main(args: Array<String>) {
  */
 fun dateStrToDigit(str: String): String {
     val parts = str.split(" ")
-    if (parts.size != 3) return ""
+    try {
+        if ((parts.size != 3) || (parts[0].toInt() !in 1..31)) return ""
+    }
+    catch (e: NumberFormatException) {
+        return ""
+    }
     val date = parts[0].toInt()
     val year = parts[2].toInt()
     val list = listOf<String>("января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря")
@@ -182,34 +187,7 @@ fun bestHighJump(jumps: String): Int {
  * Вернуть значение выражения (6 для примера).
  * Про нарушении формата входной строки бросить исключение IllegalArgumentException
  */
-fun plusMinus(expression: String): Int {
-    var parts = expression.split(" ")
-    var a = 0
-    if (parts.size == 1) {
-        a = parts[0].toInt()
-    }
-    else {
-        for (i in 1..parts.size step 2) {
-            if (parts[i] !in listOf("+", "-")) throw IllegalArgumentException()
-        }
-        try {
-            a = parts[0].toInt()
-            for (i in 0..parts.size - 1 step 2) {
-            if (parts[i + 1] == "+") {
-                a += parts[i + 2].toInt()
-                if (i >= parts.size) break
-            }
-            else  {
-                a -= parts[a + 2].toInt()
-                if (i >= parts.size) break
-            }
-        }
-        } catch (e: NumberFormatException) {
-            throw IllegalArgumentException()
-        }
-    }
-    return a
-}
+fun plusMinus(expression: String): Int = TODO()
 
 /**
  * Сложная
