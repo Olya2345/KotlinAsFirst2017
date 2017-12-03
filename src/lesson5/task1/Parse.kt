@@ -66,7 +66,16 @@ fun main(args: Array<String>) {
  * День и месяц всегда представлять двумя цифрами, например: 03.04.2011.
  * При неверном формате входной строки вернуть пустую строку
  */
-fun dateStrToDigit(str: String): String = TODO()
+fun dateStrToDigit(str: String): String {
+    val parts = str.split(" ")
+    if (parts.size != 3) return ""
+    val date = parts[0].toInt()
+    val year = parts[2].toInt()
+    val list = listOf<String>("января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря")
+    var month = list.indexOf(parts[1]) + 1
+    if (month == 0) return ""
+    return String.format("%02d.%02d.%02d", date, month, year)
+}
 
 /**
  * Средняя
@@ -75,7 +84,20 @@ fun dateStrToDigit(str: String): String = TODO()
  * Перевести её в строковый формат вида "15 июля 2016".
  * При неверном формате входной строки вернуть пустую строку
  */
-fun dateDigitToStr(digital: String): String = TODO()
+fun dateDigitToStr(digital: String): String {
+    val parts = digital.split(".")
+    try {
+        if ((parts.size != 3) || (parts[0].toInt() !in 1..31) || (parts[2].toInt() !in 1000..10000) || (parts[1].toInt() !in 1..12)) return ""
+    }
+    catch (e: NumberFormatException) {
+    return ""
+}
+    val date = parts[0].toInt()
+    val year = parts[2].toInt()
+    val list = listOf<String>("января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря")
+    var month = list.elementAt(parts[1].toInt() - 1)
+    return "${date} ${month} ${year}"
+}
 
 /**
  * Средняя
@@ -89,7 +111,19 @@ fun dateDigitToStr(digital: String): String = TODO()
  * Все символы в номере, кроме цифр, пробелов и +-(), считать недопустимыми.
  * При неверном формате вернуть пустую строку
  */
-fun flattenPhoneNumber(phone: String): String = TODO()
+fun flattenPhoneNumber(phone: String): String {
+    var parts = phone.split("-", "(", ")", " ")
+    for (element in parts) {
+        if (element != "") {
+            try {
+                element.toInt()
+            } catch (e: NumberFormatException) {
+                return ""
+            }
+        }
+    }
+    return parts.joinToString(separator = "")
+}
 
 /**
  * Средняя
@@ -101,7 +135,18 @@ fun flattenPhoneNumber(phone: String): String = TODO()
  * Прочитать строку и вернуть максимальное присутствующее в ней число (717 в примере).
  * При нарушении формата входной строки или при отсутствии в ней чисел, вернуть -1.
  */
-fun bestLongJump(jumps: String): Int = TODO()
+fun bestLongJump(jumps: String): Int {
+    var parts = jumps.split("%", "-", " ")
+    var a = -1
+    for (element in parts) {
+        try {
+            if (element.toInt() > a) a = element.toInt()
+        } catch (e: NumberFormatException) {
+           if (element != "") return -1
+        }
+    }
+    return a
+}
 
 /**
  * Сложная
@@ -113,7 +158,20 @@ fun bestLongJump(jumps: String): Int = TODO()
  * Прочитать строку и вернуть максимальную взятую высоту (230 в примере).
  * При нарушении формата входной строки вернуть -1.
  */
-fun bestHighJump(jumps: String): Int = TODO()
+fun bestHighJump(jumps: String): Int {
+    var parts = jumps.split(" ")
+    var a = -1
+    for (i in 0..parts.size - 1) {
+        try {
+            if ((parts[i].toInt() > a) && (parts[i + 1] == "+")) a = parts[i].toInt()
+        } catch (e: NumberFormatException) {
+            for (element in parts[i]) {
+                if (element !in listOf('+', '-', '%')) return -1
+            }
+        }
+    }
+    return a
+}
 
 /**
  * Сложная
@@ -161,7 +219,39 @@ fun mostExpensive(description: String): String = TODO()
  *
  * Вернуть -1, если roman не является корректным римским числом
  */
-fun fromRoman(roman: String): Int = TODO()
+fun fromRoman(roman: String): Int {
+    val list1 = listOf("M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX","V", "IV", "I")
+    val list2 = listOf(1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
+    var list = mutableListOf<Int>()
+    var q = 0
+    for (element in roman) {
+        try {
+            list.add(list2[list1.indexOf("$element")])
+        } catch (e: IndexOutOfBoundsException) {
+            return -1
+        }
+    }
+    var a = 0
+    for (i in 0..list.size) {
+        if (a == (list.size - 1)) {
+            q += list[a]
+            break
+        }
+        else {
+            if (list[a + 1] > list[a]) {
+                q += list[a + 1] - list[a]
+                a += 2
+                if (a >= list.size) break
+            } else {
+                q += list[a]
+                a += 1
+                if (a >= list.size) break
+            }
+        }
+    }
+    return q
+
+}
 
 /**
  * Очень сложная
