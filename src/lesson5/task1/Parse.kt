@@ -168,7 +168,7 @@ fun bestHighJump(jumps: String): Int {
     var a = -1
     for (i in 0..parts.size - 1) {
         try {
-            if ((parts[i].toInt() > a) && (parts[i + 1] == "+")) a = parts[i].toInt()
+            if ((parts[i].toInt() > a) && (parts[i + 1].indexOf("+") != -1)) a = parts[i].toInt()
         } catch (e: NumberFormatException) {
             for (element in parts[i]) {
                 if (element !in listOf('+', '-', '%')) return -1
