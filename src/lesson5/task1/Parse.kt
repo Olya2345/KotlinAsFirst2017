@@ -74,7 +74,7 @@ fun dateStrToDigit(str: String): String {
     val list = listOf<String>("января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря")
     var month = list.indexOf(parts[1]) + 1
     if (month == 0) return ""
-    return String.format("%02d.%02d.%02d", date, month, year)
+    return String.format("%02d.%02d.%d", date, month, year)
 }
 
 /**
@@ -87,7 +87,7 @@ fun dateStrToDigit(str: String): String {
 fun dateDigitToStr(digital: String): String {
     val parts = digital.split(".")
     try {
-        if ((parts.size != 3) || (parts[0].toInt() !in 1..31) || (parts[2].toInt() !in 1000..10000) || (parts[1].toInt() !in 1..12)) return ""
+        if ((parts.size != 3) || (parts[0].toInt() !in 1..31) || (parts[1].toInt() !in 1..12)) return ""
     }
     catch (e: NumberFormatException) {
     return ""
@@ -182,7 +182,34 @@ fun bestHighJump(jumps: String): Int {
  * Вернуть значение выражения (6 для примера).
  * Про нарушении формата входной строки бросить исключение IllegalArgumentException
  */
-fun plusMinus(expression: String): Int = TODO()
+fun plusMinus(expression: String): Int {
+    var parts = expression.split(" ")
+    var a = 0
+    if (parts.size == 1) {
+        a = parts[0].toInt()
+    }
+    else {
+        for (i in 1..parts.size step 2) {
+            if (parts[i] !in listOf("+", "-")) throw IllegalArgumentException()
+        }
+        try {
+            a = parts[0].toInt()
+            for (i in 0..parts.size - 1 step 2) {
+            if (parts[i + 1] == "+") {
+                a += parts[i + 2].toInt()
+                if (i >= parts.size) break
+            }
+            else  {
+                a -= parts[a + 2].toInt()
+                if (i >= parts.size) break
+            }
+        }
+        } catch (e: NumberFormatException) {
+            throw IllegalArgumentException()
+        }
+    }
+    return a
+}
 
 /**
  * Сложная
@@ -232,25 +259,26 @@ fun fromRoman(roman: String): Int {
         }
     }
     var a = 0
-    for (i in 0..list.size) {
-        if (a == (list.size - 1)) {
-            q += list[a]
-            break
-        }
-        else {
-            if (list[a + 1] > list[a]) {
-                q += list[a + 1] - list[a]
-                a += 2
-                if (a >= list.size) break
-            } else {
+    if (roman != "") {
+        for (i in 0..list.size) {
+            if (a == (list.size - 1)) {
                 q += list[a]
-                a += 1
-                if (a >= list.size) break
+                break
+            } else {
+                if (list[a + 1] > list[a]) {
+                    q += list[a + 1] - list[a]
+                    a += 2
+                    if (a >= list.size) break
+                } else {
+                    q += list[a]
+                    a += 1
+                    if (a >= list.size) break
+                }
             }
         }
     }
+    else return -1
     return q
-
 }
 
 /**
