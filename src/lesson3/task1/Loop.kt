@@ -103,7 +103,7 @@ fun lcm(m: Int, n: Int): Int {
     var m1 = m
     while (m1 != n1) {
         if (m1 > n1) {
-            var c = m1
+            val c = m1
             m1 = n1
             n1 = c
         }
@@ -156,13 +156,7 @@ fun isCoPrime(m: Int, n: Int): Boolean {
  * то есть, существует ли такое целое k, что m <= k*k <= n.
  * Например, для интервала 21..28 21 <= 5*5 <= 28, а для интервала 51..61 квадрата не существует.
  */
-fun squareBetweenExists(m: Int, n: Int): Boolean {
-    var x = Math.ceil(Math.sqrt(m.toDouble()))
-    var y = Math.floor(Math.sqrt(n.toDouble()))
-    if (x <= y) return true
-    else return false
-
-}
+fun squareBetweenExists(m: Int, n: Int): Boolean = (Math.ceil(Math.sqrt(m.toDouble())) <= Math.floor(Math.sqrt(n.toDouble())))
 
 /**
  * Средняя
