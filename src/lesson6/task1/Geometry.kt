@@ -72,14 +72,18 @@ data class Circle(val center: Point, val radius: Double) {
      * расстояние между их центрами минус сумма их радиусов.
      * Расстояние между пересекающимися окружностями считать равным 0.0.
      */
-    fun distance(other: Circle): Double = TODO()
+    fun distance(other: Circle): Double {
+        val a = center.distance(other.center) - (radius + other.radius)
+        return if (a > 0) a
+        else 0.0
+    }
 
     /**
      * Тривиальная
      *
      * Вернуть true, если и только если окружность содержит данную точку НА себе или ВНУТРИ себя
      */
-    fun contains(p: Point): Boolean = TODO()
+    fun contains(p: Point): Boolean = center.distance(p) <= radius
 }
 
 /**
@@ -91,6 +95,8 @@ data class Segment(val begin: Point, val end: Point) {
 
     override fun hashCode() =
             begin.hashCode() + end.hashCode()
+
+    fun center() = Point((begin.x + end.x) / 2, (begin.y + end.y) / 2)
 }
 
 /**
@@ -107,7 +113,11 @@ fun diameter(vararg points: Point): Segment = TODO()
  * Построить окружность по её диаметру, заданному двумя точками
  * Центр её должен находиться посередине между точками, а радиус составлять половину расстояния между ними
  */
-fun circleByDiameter(diameter: Segment): Circle = TODO()
+fun circleByDiameter(diameter: Segment): Circle {
+    val center = diameter.center()
+    val radius = diameter.begin.distance(diameter.end) / 2
+    return Circle(center, radius)
+}
 
 /**
  * Прямая, заданная точкой point и углом наклона angle (в радианах) по отношению к оси X.
@@ -146,21 +156,32 @@ class Line private constructor(val b: Double, val angle: Double) {
  *
  * Построить прямую по отрезку
  */
-fun lineBySegment(s: Segment): Line = TODO()
+fun lineBySegment(s: Segment): Line {
+    if (s.begin.x == s.end.x) return Line(s.begin, Math.PI / 2)
+    var an = Math.atan((s.end.y - s.begin.y) / (s.end.x - s.begin.x))
+    if (an < 0) an += Math.PI
+    return Line(s.begin, an)
+}
 
 /**
  * Средняя
  *
  * Построить прямую по двум точкам
  */
-fun lineByPoints(a: Point, b: Point): Line = TODO()
-
+fun lineByPoints(a: Point, b: Point): Line = lineBySegment(Segment(a, b))
 /**
  * Сложная
  *
  * Построить серединный перпендикуляр по отрезку или по двум точкам
  */
-fun bisectorByPoints(a: Point, b: Point): Line = TODO()
+fun bisectorByPoints(a: Point, b: Point): Line {
+    var a = Segment(a, b).center()
+    var b = lineByPoints(a, b)
+    var an = 0.0
+    if (b.angle < (Math.PI / 2)) an = (Math.PI / 2) + b.angle
+    else an = b.angle - (Math.PI / 2)
+    return Line(a, an)
+}
 
 /**
  * Средняя
@@ -179,7 +200,13 @@ fun findNearestCirclePair(vararg circles: Circle): Pair<Circle, Circle> = TODO()
  * (построить окружность по трём точкам, или
  * построить окружность, описанную вокруг треугольника - эквивалентная задача).
  */
-fun circleByThreePoints(a: Point, b: Point, c: Point): Circle = TODO()
+fun circleByThreePoints(a: Point, b: Point, c: Point): Circle {
+    val z = bisectorByPoints(a, b)
+    val x = bisectorByPoints(b, c)
+    val center = z.crossPoint(x)
+    val radius = center.distance(b)
+    return Circle(center, radius)
+}
 
 /**
  * Очень сложная

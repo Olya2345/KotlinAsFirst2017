@@ -96,7 +96,7 @@ fun dateDigitToStr(digital: String): String {
     }
     catch (e: NumberFormatException) {
     return ""
-}
+    }
     val date = parts[0].toInt()
     val year = parts[2].toInt()
     val list = listOf<String>("января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря")
