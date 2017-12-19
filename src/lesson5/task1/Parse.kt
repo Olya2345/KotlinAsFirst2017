@@ -69,12 +69,18 @@ fun main(args: Array<String>) {
 fun dateStrToDigit(str: String): String {
     val parts = str.split(" ")
     try {
-        if ((parts.size != 3) || (parts[0].toInt() !in 1..31)) return ""
+        if (parts.size != 3) return ""
     }
     catch (e: NumberFormatException) {
         return ""
     }
     val date = parts[0].toInt()
+    try {
+        if (date !in 1..31) return ""
+    }
+    catch (e: NumberFormatException) {
+        return ""
+    }
     val year = parts[2].toInt()
     val list = listOf<String>("января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря")
     var month = list.indexOf(parts[1]) + 1
@@ -92,12 +98,18 @@ fun dateStrToDigit(str: String): String {
 fun dateDigitToStr(digital: String): String {
     val parts = digital.split(".")
     try {
-        if ((parts.size != 3) || (parts[0].toInt() !in 1..31) || (parts[1].toInt() !in 1..12)) return ""
+        if ((parts.size != 3) || (parts[1].toInt() !in 1..12)) return ""
     }
     catch (e: NumberFormatException) {
-    return ""
+        return ""
     }
     val date = parts[0].toInt()
+    try {
+        if (date !in 1..31) return ""
+    }
+    catch (e: NumberFormatException) {
+        return ""
+    }
     val year = parts[2].toInt()
     val list = listOf<String>("января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря")
     var month = list.elementAt(parts[1].toInt() - 1)
@@ -144,10 +156,13 @@ fun bestLongJump(jumps: String): Int {
     var parts = jumps.split("%", "-", " ")
     var a = -1
     for (element in parts) {
+        if (element != "")
         try {
-            if (element.toInt() > a) a = element.toInt()
+            var b = element.toInt()
+            if (b > a) a = b
+            b = 0
         } catch (e: NumberFormatException) {
-           if (element != "") return -1
+            return -1
         }
     }
     return a
@@ -187,7 +202,7 @@ fun bestHighJump(jumps: String): Int {
  * Вернуть значение выражения (6 для примера).
  * Про нарушении формата входной строки бросить исключение IllegalArgumentException
  */
-fun plusMinus(expression: String): Int  = TODO()
+fun plusMinus(expression: String): Int = TODO()
 
 /**
  * Сложная
