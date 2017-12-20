@@ -68,13 +68,15 @@ fun main(args: Array<String>) {
  */
 fun dateStrToDigit(str: String): String {
     val parts = str.split(" ")
+    val date: Int
+    if (parts.size != 3) return ""
     try {
-        if ((parts.size != 3) || (parts[0].toInt() !in 1..31)) return ""
+        date = parts[0].toInt()
+        if (date !in 1..31)  return ""
     }
     catch (e: NumberFormatException) {
         return ""
     }
-    val date = parts[0].toInt()
     val year = parts[2].toInt()
     val list = listOf<String>("января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря")
     var month = list.indexOf(parts[1]) + 1
@@ -173,16 +175,18 @@ fun bestLongJump(jumps: String): Int {
  * При нарушении формата входной строки вернуть -1.
  */
 fun bestHighJump(jumps: String): Int {
-    var parts = jumps.split(" ")
+    val list = mutableListOf<Int>()
+    var parts = jumps.split("%", "-", " ")
     var a = -1
-    for (i in 0..parts.size - 1) {
-        try {
-            if ((parts[i].toInt() > a) && (parts[i + 1].indexOf("+") != -1)) a = parts[i].toInt()
-        } catch (e: NumberFormatException) {
-            for (element in parts[i]) {
-                if (element !in listOf('+', '-', '%')) return -1
-            }
-        }
+    parts = parts.filter { it != "" }
+    var i = 0
+    for (i in 1 until parts.size)
+        if (parts[i] == "+") list.add(parts[i - 1].toInt())
+    try {
+        for (element in list)
+            if (element > a) a = element
+    } catch (e: NumberFormatException) {
+        return -1
     }
     return a
 }
