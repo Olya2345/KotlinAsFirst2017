@@ -273,11 +273,18 @@ fun fibSequenceDigit(n: Int): Int {
     var f2 = 1
     var qf = "11"
     var fib = 0
-    do {
-        fib = f1 + f2
-        qf = qf + fib.toString()
-        f1 = f2
-        f2 = fib
-    } while (qf.length < n)
-    return qf[n - 1].toInt() - 48
+    var a = 2
+    if ((n ==1) || (n == 2)) return 1
+    else {
+        do {
+            fib = f1 + f2
+            qf = fib.toString()
+            a += qf.length
+            f1 = f2
+            f2 = fib
+        } while (a < n)
+    }
+    if (qf.length >= 2) return qf[0].toInt() - 48
+    else return qf.toInt()
+
 }
