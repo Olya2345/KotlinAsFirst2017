@@ -181,6 +181,7 @@ fun bestHighJump(jumps: String): Int {
     var parts = jumps.split("%", "-", " ")
     var a = -1
     parts = parts.filter { it != "" }
+    if (parts.all { it == "+" }) return -1
     var i = 0
     for (i in 1 until parts.size)
         if (parts[i] == "+") list.add(parts[i - 1].toInt())
@@ -240,13 +241,13 @@ fun mostExpensive(description: String): String = TODO()
  * Вернуть -1, если roman не является корректным римским числом
  */
 fun fromRoman(roman: String): Int {
-    val list1 = listOf("M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX","V", "IV", "I")
-    val list2 = listOf(1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
+    val numberOfRoman = listOf("M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX","V", "IV", "I")
+    val number = listOf(1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
     var list = mutableListOf<Int>()
     var q = 0
     for (element in roman) {
         try {
-            list.add(list2[list1.indexOf("$element")])
+            list.add(number[numberOfRoman.indexOf("$element")])
         } catch (e: IndexOutOfBoundsException) {
             return -1
         }
