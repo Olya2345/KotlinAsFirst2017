@@ -93,8 +93,11 @@ fun dateStrToDigit(str: String): String {
  */
 fun dateDigitToStr(digital: String): String {
     val parts = digital.split(".")
+    val a: Int
+    if (parts.size != 3) return ""
     try {
-        if ((parts.size != 3) || (parts[1].toInt() !in 1..12)) return ""
+        a = parts[1].toInt()
+        if (a !in 1..12) return ""
     }
     catch (e: NumberFormatException) {
         return ""
@@ -108,7 +111,7 @@ fun dateDigitToStr(digital: String): String {
     }
     val year = parts[2].toInt()
     val list = listOf<String>("января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря")
-    var month = list.elementAt(parts[1].toInt() - 1)
+    val month = list.elementAt(a - 1)
     return "${date} ${month} ${year}"
 }
 
@@ -156,7 +159,6 @@ fun bestLongJump(jumps: String): Int {
         try {
             var b = element.toInt()
             if (b > a) a = b
-            b = 0
         } catch (e: NumberFormatException) {
             return -1
         }
