@@ -229,14 +229,8 @@ fun convert(n: Int, base: Int): List<Int> {
     var p = listOf<Int>()
     var m = n
     while (m >= base) {
-        if (m < base) {
-            p += m
-            break
-        }
-        else {
-            p += m % base
-            m /= base
-        }
+        p += m % base
+        m /= base
     }
     p += m
     if (n == 0) p = listOf(0)
@@ -290,9 +284,13 @@ fun decimal(digits: List<Int>, base: Int): Int {
  */
 fun decimalFromString(str: String, base: Int): Int {
     var r = mutableListOf<Int>()
+    //по таблице ASCII
+    var lowerCase = 97
+    var numbers = 48
+    var discardTheNumbers = 87
     for (element in str) {
-        if (element.toInt() >= 97) r.add(element.toInt() - 87)
-        else r.add(element.toInt() - 48)
+        if (element.toInt() >= lowerCase) r.add(element.toInt() - discardTheNumbers)
+        else r.add(element.toInt() - numbers)
     }
     return decimal(r, base)
 }
