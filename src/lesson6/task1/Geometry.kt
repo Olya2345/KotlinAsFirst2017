@@ -105,7 +105,21 @@ data class Segment(val begin: Point, val end: Point) {
  * Дано множество точек. Вернуть отрезок, соединяющий две наиболее удалённые из них.
  * Если в множестве менее двух точек, бросить IllegalArgumentException
  */
-fun diameter(vararg points: Point): Segment = TODO()
+fun diameter(vararg points: Point): Segment {
+    if (points.size < 2) throw IllegalArgumentException()
+    var max = 0.0
+    var ms = Segment(Point(0.0, 0.0), Point(0.0, 0.0))
+    for (i in 0..points.size) {
+        for (j in i + 1 until points.size) {
+            val dist = points[i].distance(points[j])
+            if (dist > max) {
+                max = dist
+                ms = Segment(points[i], points[j])
+            }
+        }
+    }
+    return ms
+}
 
 /**
  * Простая
@@ -189,7 +203,22 @@ fun bisectorByPoints(a: Point, b: Point): Line {
  * Задан список из n окружностей на плоскости. Найти пару наименее удалённых из них.
  * Если в списке менее двух окружностей, бросить IllegalArgumentException
  */
-fun findNearestCirclePair(vararg circles: Circle): Pair<Circle, Circle> = TODO()
+fun findNearestCirclePair(vararg circles: Circle): Pair<Circle, Circle> {
+    if (circles.size < 2) throw IllegalArgumentException()
+    var min = Double.MAX_VALUE
+    var mp = Pair(Circle(Point(0.0, 0.0), 1.0),
+            Circle(Point(min - 1, min - 1), 1.0))
+    for (i in 0..circles.size) {
+        for (j in i + 1 until circles.size) {
+            val d = circles[i].distance(circles[j])
+            if (d < min) {
+                min = d
+                mp = Pair(circles[i], circles[j])
+            }
+        }
+    }
+    return mp
+}
 
 /**
  * Сложная
