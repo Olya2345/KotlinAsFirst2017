@@ -166,17 +166,18 @@ fun squareBetweenExists(m: Int, n: Int): Boolean = (Math.ceil(Math.sqrt(m.toDoub
  * Нужную точность считать достигнутой, если очередной член ряда меньше eps по модулю
  */
 fun sin(x: Double, eps: Double): Double {
-    var qn = 1      // степень для x
-    var pw: Int     // степень для -1
-    var sx = x      // результат
-    var sn: Double  // новый член
-    do {
-        qn = qn + 2
-        pw = (qn - 1) / 2
-        sn = Math.pow(-1.0, pw.toDouble()) * Math.pow(x, qn.toDouble()) / factorial(qn)
-        sx += sn
-    } while (Math.abs(sn) >= eps)
-    return sx
+    val a = x % (2 * Math.PI)
+    var i = 1
+    var sn = 0.0
+    var z = 0.0
+    var s = (Math.pow(a, i.toDouble()) / factorial(i)) * Math.pow(-1.0, z)
+    while (Math.abs(s) >= eps) {
+        sn += s
+        i += 2
+        z++
+        s = (Math.pow(a, i.toDouble()) / factorial(i)) * Math.pow(-1.0, z)
+    }
+    return sn
 }
 
 /**
@@ -187,17 +188,18 @@ fun sin(x: Double, eps: Double): Double {
  * Нужную точность считать достигнутой, если очередной член ряда меньше eps по модулю
  */
 fun cos(x: Double, eps: Double): Double {
-    var qn = 0
-    var pw: Int
-    var cx = 1.0
-    var cn: Double
-    do {
-        qn = qn + 2
-        pw = qn / 2
-        cn = Math.pow(-1.0, pw.toDouble()) * Math.pow(x, qn.toDouble()) / factorial(qn)
-        cx = cx + cn
-    } while (Math.abs(cn) >= eps)
-    return cx
+    val a = x % (2 * Math.PI)
+    var i = 2
+    var cs = 1.0
+    var z = -1
+    var s = (Math.pow(a, i.toDouble()) / factorial(i)) * z
+    while (Math.abs(s) >= eps) {
+        cs += s
+        i += 2
+        z = - z
+        s = (Math.pow(a, i.toDouble()) / factorial(i)) * z
+    }
+    return cs
 }
 
 /**
@@ -258,7 +260,7 @@ fun squareSequenceDigit(n: Int): Int {
         i += 1
     } while (ql < n)
     ql = ql - qm.length
-    return qm[n - ql - 1].toInt() - 48
+    return ('0' - qm[n - ql - 1]) * (-1)
 }
 
 /**
@@ -271,13 +273,20 @@ fun squareSequenceDigit(n: Int): Int {
 fun fibSequenceDigit(n: Int): Int {
     var f1 = 1
     var f2 = 1
-    var qf = "11"
+    var qf : String
     var fib = 0
-    do {
-        fib = f1 + f2
-        qf = qf + fib.toString()
-        f1 = f2
-        f2 = fib
-    } while (qf.length < n)
-    return qf[n - 1].toInt() - 48
+    var a = 2
+    if ((n ==1) || (n == 2)) return 1
+    else {
+        do {
+            fib = f1 + f2
+            qf = fib.toString()
+            a += qf.length
+            f1 = f2
+            f2 = fib
+        } while (a < n)
+    }
+    if (qf.length >= 2) return if (a - n == 0) qf[a - n].toInt() - 48
+    else qf[a - n - 1].toInt() - 48
+    else return qf.toInt()
 }

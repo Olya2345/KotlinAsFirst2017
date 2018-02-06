@@ -1,6 +1,8 @@
 @file:Suppress("UNUSED_PARAMETER")
 package lesson5.task1
 
+import java.text.NumberFormat
+
 /**
  * Пример
  *
@@ -156,12 +158,12 @@ fun bestLongJump(jumps: String): Int {
     var a = -1
     for (element in parts) {
         if (element != "")
-        try {
-            var b = element.toInt()
-            if (b > a) a = b
-        } catch (e: NumberFormatException) {
-            return -1
-        }
+            try {
+                var b = element.toInt()
+                if (b > a) a = b
+            } catch (e: NumberFormatException) {
+                return -1
+            }
     }
     return a
 }
@@ -180,11 +182,9 @@ fun bestHighJump(jumps: String): Int {
     val list = mutableListOf<Int>()
     var parts = jumps.split("%", "-", " ")
     var a = -1
-    parts = parts.filter { it != "" }
-    if (parts.all { it == "+" }) return -1
-    var i = 0
-    for (i in 1 until parts.size)
-        if (parts[i] == "+") list.add(parts[i - 1].toInt())
+    //parts = parts.filter { it != "" }
+    for (i in 0.. parts.size)
+        if ((parts[i].toInt() > a) && (parts[i + 1].indexOf( "+" ) != -1)) a = parts[i].toInt()
     try {
         for (element in list)
             if (element > a) a = element
@@ -245,15 +245,11 @@ fun fromRoman(roman: String): Int {
     val number = listOf(1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
     var list = mutableListOf<Int>()
     var q = 0
+    try {
     for (element in roman) {
-        try {
             list.add(number[numberOfRoman.indexOf("$element")])
-        } catch (e: IndexOutOfBoundsException) {
-            return -1
         }
-    }
     var a = 0
-    if (roman != "") {
         for (i in 0..list.size) {
             if (a == (list.size - 1)) {
                 q += list[a]
@@ -270,8 +266,9 @@ fun fromRoman(roman: String): Int {
                 }
             }
         }
+    } catch (e: IndexOutOfBoundsException) {
+        return -1
     }
-    else return -1
     return q
 }
 
