@@ -273,20 +273,13 @@ fun squareSequenceDigit(n: Int): Int {
 fun fibSequenceDigit(n: Int): Int {
     var f1 = 1
     var f2 = 1
-    var qf : String
+    var qf = "11"
     var fib = 0
-    var a = 2
-    if ((n ==1) || (n == 2)) return 1
-    else {
-        do {
-            fib = f1 + f2
-            qf = fib.toString()
-            a += qf.length
-            f1 = f2
-            f2 = fib
-        } while (a < n)
-    }
-    if (qf.length >= 2) return if (a - n == 0) qf[a - n].toInt() - 48
-    else qf[a - n - 1].toInt() - 48
-    else return qf.toInt()
+    do {
+        fib = f1 + f2
+        qf = qf + fib.toString()
+        f1 = f2
+        f2 = fib
+    } while (qf.length < n)
+    return qf[n - 1].toInt() - 48
 }

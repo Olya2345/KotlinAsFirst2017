@@ -182,7 +182,8 @@ fun bestHighJump(jumps: String): Int {
     val list = mutableListOf<Int>()
     var parts = jumps.split("%", "-", " ")
     var a = -1
-    //parts = parts.filter { it != "" }
+    parts = parts.filter { it != "" }
+    if (parts.all { it == "+" }) return -1
     for (i in 0.. parts.size)
         if ((parts[i].toInt() > a) && (parts[i + 1].indexOf( "+" ) != -1)) a = parts[i].toInt()
     try {
